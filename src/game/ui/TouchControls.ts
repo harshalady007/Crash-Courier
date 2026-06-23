@@ -1,0 +1,3 @@
+import Phaser from 'phaser';
+import type { InputSystem } from '../systems/InputSystem';
+export class TouchControls { constructor(scene:Phaser.Scene,input:InputSystem){ const make=(x:number,y:number,label:string,key:'left'|'right'|'brake')=>{ const b=scene.add.rectangle(x,y,104,78,0x0f172a,0.58).setStrokeStyle(2,0xffffff,0.45).setScrollFactor(0).setInteractive().setDepth(100); scene.add.text(x,y,label,{fontSize:'28px',color:'#fff'}).setOrigin(0.5).setScrollFactor(0).setDepth(101); b.on('pointerdown',()=>input.touch[key]=true); b.on('pointerup',()=>input.touch[key]=false); b.on('pointerout',()=>input.touch[key]=false); }; make(86,620,'◀','left'); make(212,620,'▶','right'); make(1160,620,'BRAKE','brake'); } }
