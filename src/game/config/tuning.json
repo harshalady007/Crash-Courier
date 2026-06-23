@@ -1,0 +1,25 @@
+{
+  "player": {
+    "acceleration": 0.0016,
+    "brake": 0.0022,
+    "reverse": 0.0009,
+    "turnRate": 0.055,
+    "maxSpeed": 7.2,
+    "drag": 0.025,
+    "crashDamageScale": 3.8,
+    "parcelDamageScale": 2.6
+  },
+  "delivery": {
+    "baseSeconds": 34,
+    "minSeconds": 20,
+    "timeExtension": 13,
+    "pickupRadius": 62,
+    "dropoffRadius": 70,
+    "baseCash": 80,
+    "speedBonusMax": 70,
+    "nearMissCash": 10
+  },
+  "traffic": { "count": 7, "speed": 1.15, "nearMissDistance": 82 },
+  "run": { "startSeconds": 90, "maxHealth": 100, "maxParcelIntegrity": 100 },
+  "mobile": { "autoThrottle": true }
+}

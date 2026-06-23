@@ -1,0 +1,25 @@
+import Phaser from "phaser";
+export class EffectsSystem {
+  constructor(private scene: Phaser.Scene) {}
+  hit(x: number, y: number, strong = false): void {
+    this.scene.cameras.main.shake(strong ? 150 : 80, strong ? 0.012 : 0.006);
+    const s = this.scene.add.star(x, y, 6, 5, 18, 0xfff1a8).setDepth(20);
+    this.scene.tweens.add({
+      targets: s,
+      alpha: 0,
+      scale: 2,
+      duration: 220,
+      onComplete: () => s.destroy(),
+    });
+  }
+  burst(x: number, y: number): void {
+    const c = this.scene.add.circle(x, y, 20, 0x67e8f9, 0.8).setDepth(20);
+    this.scene.tweens.add({
+      targets: c,
+      alpha: 0,
+      scale: 4,
+      duration: 360,
+      onComplete: () => c.destroy(),
+    });
+  }
+}

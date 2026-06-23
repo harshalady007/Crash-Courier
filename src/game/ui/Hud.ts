@@ -1,0 +1,22 @@
+import Phaser from "phaser";
+import { EVENTS, type HudSnapshot } from "../utils/events";
+export class Hud {
+  private text: Phaser.GameObjects.Text;
+  constructor(scene: Phaser.Scene) {
+    this.text = scene.add
+      .text(18, 14, "", {
+        fontSize: "22px",
+        color: "#fff",
+        stroke: "#0f172a",
+        strokeThickness: 5,
+      })
+      .setScrollFactor(0)
+      .setDepth(200);
+    scene.game.events.on(EVENTS.hud, (h: HudSnapshot) => this.render(h));
+  }
+  private render(h: HudSnapshot): void {
+    this.text.setText(
+      `$${h.cash}  Score ${h.score}  Combo x${h.combo}\nRun ${Math.ceil(h.time)}s  Delivery ${Math.ceil(h.deliveryTime)}s\nVan ${Math.ceil(h.health)}%  Parcel ${Math.ceil(h.parcel)}%\n${h.objective}`,
+    );
+  }
+}
