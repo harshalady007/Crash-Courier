@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 import httpx
 
-from .base import JobConnector, JobPosting, SearchQuery, strip_html
+from .base import JobConnector, JobPosting, SearchQuery, matches_keywords, strip_html
 
 
 class RemoteOKConnector(JobConnector):
@@ -20,7 +20,6 @@ class RemoteOKConnector(JobConnector):
         resp.raise_for_status()
         data = resp.json()
 
-        keywords = [k.lower() for k in query.keywords]
         postings: list[JobPosting] = []
         for item in data:
             if not isinstance(item, dict) or "position" not in item:
@@ -29,8 +28,8 @@ class RemoteOKConnector(JobConnector):
                 item.get("position", ""),
                 " ".join(item.get("tags", []) or []),
                 item.get("description", "")[:500],
-            ]).lower()
-            if keywords and not any(k in haystack for k in keywords):
+            ])
+            if not matches_keywords(haystack, query.keywords):
                 continue
             posted_at = None
             if item.get("epoch"):

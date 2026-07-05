@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 import httpx
 
-from .base import JobConnector, JobPosting, SearchQuery, strip_html
+from .base import JobConnector, JobPosting, SearchQuery, matches_keywords, strip_html
 
 
 class ArbeitnowConnector(JobConnector):
@@ -17,7 +17,6 @@ class ArbeitnowConnector(JobConnector):
 
     async def search(self, query: SearchQuery, client: httpx.AsyncClient) -> list[JobPosting]:
         postings: list[JobPosting] = []
-        keywords = [k.lower() for k in query.keywords]
 
         # API is paginated but unfiltered; fetch first pages and filter locally.
         for page in (1, 2):
@@ -28,8 +27,8 @@ class ArbeitnowConnector(JobConnector):
                     item.get("title", ""),
                     " ".join(item.get("tags", []) or []),
                     item.get("description", "")[:500],
-                ]).lower()
-                if keywords and not any(k in haystack for k in keywords):
+                ])
+                if not matches_keywords(haystack, query.keywords):
                     continue
                 if query.remote_only and not item.get("remote"):
                     continue

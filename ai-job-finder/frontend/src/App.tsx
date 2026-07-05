@@ -108,13 +108,23 @@ export default function App() {
           <section className="card">
             <h2>3 · Job matches</h2>
             {searchStats && (
-              <p className="subtitle">
-                Sources:{" "}
-                {Object.entries(searchStats.sources)
-                  .filter(([, s]) => !s.error?.startsWith("disabled"))
-                  .map(([id, s]) => `${id} (${s.error ? "error" : s.fetched})`)
-                  .join(" · ")}
-              </p>
+              <>
+                <p className="subtitle">
+                  Sources:{" "}
+                  {Object.entries(searchStats.sources)
+                    .filter(([, s]) => !s.error?.startsWith("disabled"))
+                    .map(([id, s]) => `${id} (${s.error ? "error" : s.fetched})`)
+                    .join(" · ")}
+                </p>
+                {["adzuna", "jooble", "jsearch"].some((id) =>
+                  searchStats.sources[id]?.error?.startsWith("disabled"),
+                ) && (
+                  <p className="info" style={{ marginTop: -6, marginBottom: 12 }}>
+                    ⚠ Location-aware sources (Adzuna, Jooble, JSearch/LinkedIn/Indeed) are off — add their free
+                    API keys to the backend environment to get jobs for a specific country like India.
+                  </p>
+                )}
+              </>
             )}
             <FiltersBar filters={filters} onChange={setFilters} />
             <div style={{ marginTop: 14, overflowX: "auto" }}>

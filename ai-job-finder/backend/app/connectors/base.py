@@ -17,6 +17,25 @@ import httpx
 TAG_RE = re.compile(r"<[^>]+>")
 
 
+def matches_keywords(text: str, keywords: list[str]) -> bool:
+    """Word-boundary keyword matching for connector-side filtering.
+
+    Substring matching is dangerous here: a resume skill like "c" would match
+    almost any posting. Single-word keywords must match as whole tokens; multi-word
+    keywords ("junior software engineer") match when every word is present.
+    """
+    if not keywords:
+        return True
+    haystack = text.lower()
+    for keyword in keywords:
+        words = [w for w in keyword.lower().split() if w]
+        if words and all(
+            re.search(rf"(?<![\w+#]){re.escape(w)}(?![\w+#])", haystack) for w in words
+        ):
+            return True
+    return False
+
+
 def strip_html(text: str | None) -> str:
     if not text:
         return ""

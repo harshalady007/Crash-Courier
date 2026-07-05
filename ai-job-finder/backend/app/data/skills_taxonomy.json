@@ -33,7 +33,7 @@
     {"id": "machine learning", "aliases": ["ml"], "category": "ml"},
     {"id": "deep learning", "aliases": ["neural networks", "cnn", "rnn", "lstm"], "category": "ml"},
     {"id": "nlp", "aliases": ["natural language processing", "spacy", "nltk", "transformers", "hugging face", "huggingface"], "category": "ml"},
-    {"id": "computer vision", "aliases": ["opencv", "cv"], "category": "ml"},
+    {"id": "computer vision", "aliases": ["opencv"], "category": "ml"},
     {"id": "llm", "aliases": ["large language models", "langchain", "rag", "prompt engineering", "generative ai", "genai"], "category": "ml"},
     {"id": "statistics", "aliases": ["statistical analysis", "hypothesis testing", "probability"], "category": "data-science"},
     {"id": "excel", "aliases": ["ms excel", "microsoft excel", "vlookup", "pivot tables", "power query"], "category": "analytics"},

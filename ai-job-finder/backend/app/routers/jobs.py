@@ -71,6 +71,9 @@ def list_jobs(
         .options(joinedload(JobMatch.job))
         .where(JobMatch.resume_id == resume_id, JobMatch.score >= min_score)
     )
+    if internship and full_time:
+        # Both checked = no role-type preference, not "intern AND not-intern" (empty).
+        internship = full_time = False
     if remote_only:
         stmt = stmt.where(Job.remote.is_(True))
     if fresher_only:

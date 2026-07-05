@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 
 import httpx
 
-from .base import JobConnector, JobPosting, SearchQuery, strip_html
+from .base import JobConnector, JobPosting, SearchQuery, matches_keywords, strip_html
 
 
 class LeverConnector(JobConnector):
@@ -45,14 +45,12 @@ class LeverConnector(JobConnector):
         url = f"https://api.lever.co/v0/postings/{board}"
         resp = await client.get(url, params={"mode": "json"})
         resp.raise_for_status()
-        keywords = [k.lower() for k in query.keywords]
 
         postings: list[JobPosting] = []
         for item in resp.json():
             title = item.get("text", "")
             location = (item.get("categories", {}) or {}).get("location", "") or ""
-            haystack = f"{title} {location}".lower()
-            if keywords and not any(k in haystack for k in keywords):
+            if not matches_keywords(f"{title} {location}", query.keywords):
                 continue
             remote = "remote" in f"{location} {item.get('workplaceType', '')}".lower()
             if query.remote_only and not remote:
