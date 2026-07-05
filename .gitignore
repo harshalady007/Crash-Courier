@@ -6,3 +6,10 @@ npm-debug.log*
 .DS_Store
 .vite/
 coverage/
+
+# ai-job-finder
+__pycache__/
+*.pyc
+*.db
+.pytest_cache/
+!.env.example

@@ -1,0 +1,60 @@
+{
+  "roles": [
+    {
+      "name": "Data Analyst",
+      "titles": ["data analyst", "junior data analyst", "data analyst fresher"],
+      "core_skills": ["sql", "excel", "python", "data analysis", "data visualization", "statistics"],
+      "bonus_skills": ["power bi", "tableau", "pandas", "communication"],
+      "keywords": ["dashboard", "report", "insights", "kpi", "business intelligence"]
+    },
+    {
+      "name": "AI Engineer Intern",
+      "titles": ["ai engineer intern", "ai intern", "artificial intelligence intern"],
+      "core_skills": ["python", "machine learning", "deep learning", "llm"],
+      "bonus_skills": ["pytorch", "tensorflow", "nlp", "fastapi", "docker", "streamlit"],
+      "keywords": ["generative", "model", "fine-tuning", "inference", "agents"]
+    },
+    {
+      "name": "Data Scientist Fresher",
+      "titles": ["data scientist fresher", "junior data scientist", "associate data scientist"],
+      "core_skills": ["python", "machine learning", "statistics", "pandas", "sql"],
+      "bonus_skills": ["scikit-learn", "deep learning", "matplotlib", "big data", "nlp"],
+      "keywords": ["prediction", "modeling", "experiment", "a/b testing", "feature engineering"]
+    },
+    {
+      "name": "Machine Learning Intern",
+      "titles": ["machine learning intern", "ml intern", "ml engineer intern"],
+      "core_skills": ["python", "machine learning", "scikit-learn", "numpy"],
+      "bonus_skills": ["pytorch", "tensorflow", "computer vision", "nlp", "mlops"],
+      "keywords": ["training", "dataset", "model evaluation", "kaggle"]
+    },
+    {
+      "name": "Python Developer",
+      "titles": ["python developer", "junior python developer", "python developer fresher"],
+      "core_skills": ["python", "oop", "sql", "git", "rest api"],
+      "bonus_skills": ["django", "flask", "fastapi", "docker", "linux", "testing"],
+      "keywords": ["backend", "api", "microservices", "orm"]
+    },
+    {
+      "name": "Junior Software Engineer",
+      "titles": ["junior software engineer", "software engineer fresher", "graduate software engineer", "sde 1", "associate software engineer"],
+      "core_skills": ["data structures", "oop", "git", "sql"],
+      "bonus_skills": ["python", "java", "javascript", "react", "node", "testing", "linux"],
+      "keywords": ["software development", "debugging", "code review", "full stack"]
+    },
+    {
+      "name": "Business Analyst",
+      "titles": ["business analyst", "junior business analyst", "business analyst fresher"],
+      "core_skills": ["business analysis", "excel", "sql", "communication", "data analysis"],
+      "bonus_skills": ["power bi", "tableau", "agile", "product management"],
+      "keywords": ["requirements", "stakeholders", "process improvement", "documentation"]
+    },
+    {
+      "name": "Automation Engineer",
+      "titles": ["automation engineer", "qa automation engineer", "automation test engineer"],
+      "core_skills": ["python", "selenium", "testing", "git"],
+      "bonus_skills": ["playwright", "rpa", "ci/cd", "api integration", "linux"],
+      "keywords": ["test cases", "regression", "framework", "automation scripts"]
+    }
+  ]
+}
