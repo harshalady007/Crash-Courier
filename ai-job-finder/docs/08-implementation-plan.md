@@ -28,7 +28,7 @@
   detail expansion with score breakdown and application kit.
 
 ## Phase 6 — AI recommendations (day 17) ✅
-- `services/llm.py` (Anthropic SDK, `claude-opus-4-8` default, env-overridable).
+- `services/llm.py` (DeepSeek API via the OpenAI SDK, `deepseek-chat` default, env-overridable).
 - recommender with template fallback; `POST /api/jobs/{id}/recommend`.
 
 ## Phase 7 — Automation (day 18) ✅
@@ -43,8 +43,8 @@
 # MVP version (what ships from this repo)
 
 Single-user, self-hosted. SQLite. Keyless connectors work out of the box; add free API
-keys to unlock Adzuna/Jooble/JSearch. Claude-powered application kits when
-`ANTHROPIC_API_KEY` is set, template fallback otherwise. In-process daily scheduler.
+keys to unlock Adzuna/Jooble/JSearch. DeepSeek-powered application kits when
+`DEEPSEEK_API_KEY` is set, template fallback otherwise. In-process daily scheduler.
 
 **Run it:**
 ```bash

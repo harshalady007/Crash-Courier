@@ -55,5 +55,5 @@ def health():
         "status": "ok",
         "version": settings.version,
         "connectors_enabled": [c.id for c in connectors if c.enabled],
-        "llm_configured": bool(settings.anthropic_api_key),
+        "llm_configured": bool(settings.deepseek_api_key),
     }

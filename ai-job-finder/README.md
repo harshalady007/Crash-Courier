@@ -10,7 +10,7 @@ generate a tailored cover letter + recruiter message per job → automate daily.
 ```
 ai-job-finder/
 ├── docs/        Product & engineering docs (PRD, architecture, schema, API, algorithm, connectors, plan)
-├── backend/     FastAPI + SQLAlchemy + connectors + scoring + Claude integration
+├── backend/     FastAPI + SQLAlchemy + connectors + scoring + DeepSeek integration
 └── frontend/    React (Vite + TypeScript) dashboard
 ```
 
@@ -46,7 +46,7 @@ Add free API keys in `backend/.env` to unlock:
 | `ADZUNA_APP_ID` + `ADZUNA_APP_KEY` | Adzuna (strong India/US/UK coverage) |
 | `JOOBLE_API_KEY` | Jooble aggregator |
 | `RAPIDAPI_KEY` | JSearch — LinkedIn/Indeed/Glassdoor postings via the licensed Google-for-Jobs index |
-| `ANTHROPIC_API_KEY` | Claude-generated cover letters & recruiter messages (template fallback otherwise) |
+| `DEEPSEEK_API_KEY` | DeepSeek-generated cover letters & recruiter messages (template fallback otherwise) |
 | `SMTP_*` | Daily email digests |
 
 Naukri / Internshala / Cutshort / Wellfound have no public APIs and their ToS prohibit

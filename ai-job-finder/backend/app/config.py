@@ -22,8 +22,9 @@ class Settings(BaseSettings):
     cors_origins: str = Field(default="http://localhost:5173,http://127.0.0.1:5173", alias="CORS_ORIGINS")
 
     # LLM (optional — template fallback used when unset)
-    anthropic_api_key: str | None = Field(default=None, alias="ANTHROPIC_API_KEY")
-    llm_model: str = Field(default="claude-opus-4-8", alias="LLM_MODEL")
+    deepseek_api_key: str | None = Field(default=None, alias="DEEPSEEK_API_KEY")
+    deepseek_base_url: str = Field(default="https://api.deepseek.com", alias="DEEPSEEK_BASE_URL")
+    llm_model: str = Field(default="deepseek-chat", alias="LLM_MODEL")
 
     # Key-gated connectors (all optional)
     adzuna_app_id: str | None = Field(default=None, alias="ADZUNA_APP_ID")

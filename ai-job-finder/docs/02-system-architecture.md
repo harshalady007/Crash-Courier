@@ -52,7 +52,7 @@
 3. **Config-gated connectors.** A connector is `enabled` only when its required env keys are
    present, so a fresh clone works with the keyless sources (RemoteOK, Arbeitnow,
    Greenhouse/Lever boards) immediately.
-4. **LLM optional everywhere.** `services/llm.py` wraps the Anthropic SDK; if no credentials,
+4. **LLM optional everywhere.** `services/llm.py` calls the DeepSeek API (OpenAI-compatible); if no credentials,
    `recommender` falls back to templates and the parser falls back to heuristics.
 5. **Async end-to-end.** httpx.AsyncClient for connectors; FastAPI async routes; parsing runs
    in a thread pool (CPU-bound PyMuPDF).

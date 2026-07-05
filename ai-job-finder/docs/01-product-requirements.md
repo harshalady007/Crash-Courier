@@ -75,7 +75,7 @@ score, posted-within (24h / 7d / 30d).
 - Tailored cover letter (~250 words).
 - LinkedIn message to recruiter (≤300 chars).
 - Application priority High/Medium/Low.
-- Powered by Claude (`claude-opus-4-8` by default) with a deterministic template
+- Powered by DeepSeek (`deepseek-chat` by default) with a deterministic template
   fallback when no API key is configured — the app must work offline/keyless.
 
 ### FR-8 Automation

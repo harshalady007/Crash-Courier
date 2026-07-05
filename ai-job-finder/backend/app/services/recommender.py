@@ -1,6 +1,6 @@
 """Per-job AI recommendations: why-fit, keywords to add, cover letter, recruiter message.
 
-Uses Claude when configured; otherwise deterministic templates so the feature always works.
+Uses DeepSeek when configured; otherwise deterministic templates so the feature always works.
 Scores are never produced here — see docs/06.
 """
 from __future__ import annotations
