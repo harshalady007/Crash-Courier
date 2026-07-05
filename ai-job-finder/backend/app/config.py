@@ -54,7 +54,12 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
-    return Settings()
+    settings = Settings()
+    # On Vercel the filesystem is read-only except /tmp — keep the demo SQLite there
+    # unless a real DATABASE_URL (e.g. hosted Postgres) is configured.
+    if os.environ.get("VERCEL") and "DATABASE_URL" not in os.environ:
+        settings.database_url = "sqlite:////tmp/jobfinder.db"
+    return settings
 
 
 def data_path(filename: str) -> str:

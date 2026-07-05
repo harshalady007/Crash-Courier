@@ -6,6 +6,7 @@ Docs: /docs (Swagger UI) · Architecture: ../docs/02-system-architecture.md
 from __future__ import annotations
 
 import logging
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -25,7 +26,10 @@ settings = get_settings()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
-    start_scheduler()
+    # In-process scheduler only makes sense on a long-lived server; on serverless
+    # (Vercel) use platform cron hitting /api/automation/schedules/{id}/run instead.
+    if not os.environ.get("VERCEL"):
+        start_scheduler()
     yield
     stop_scheduler()
 

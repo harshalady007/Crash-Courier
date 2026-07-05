@@ -1,0 +1,17 @@
+# Keep the upload small. Patterns are anchored (leading /) so they only exclude
+# the Phaser game files at the repo root — NOT the frontend's files under ai-job-finder/.
+node_modules
+__pycache__
+*.db
+*.pyc
+/dist
+/src
+/tests
+/index.html
+/package.json
+/package-lock.json
+/tsconfig.json
+/vite.config.ts
+/MANUAL_TESTS.md
+ai-job-finder/backend/tests
+ai-job-finder/docs
