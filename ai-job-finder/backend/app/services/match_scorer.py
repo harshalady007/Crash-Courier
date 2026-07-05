@@ -59,8 +59,12 @@ def _skills_component(resume_skills: set[str], job_skills: list[str], descriptio
         missing = [s for s in job_skills if s not in resume_skills]
         return round(100 * len(matched) / len(job_skills)), matched, missing
     # No recognizable required skills — weak fallback on description overlap, capped.
+    # Word-boundary matching and a length floor keep "c"/"r" from matching everything.
     desc_lower = description.lower()
-    overlap = [s for s in resume_skills if s in desc_lower]
+    overlap = [
+        s for s in resume_skills
+        if len(s) >= 3 and re.search(rf"(?<![\w+#]){re.escape(s)}(?![\w+#])", desc_lower)
+    ]
     return (60 if overlap else 30), overlap[:10], []
 
 

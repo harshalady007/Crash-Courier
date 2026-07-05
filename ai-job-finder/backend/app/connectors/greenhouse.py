@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 
 import httpx
 
-from .base import JobConnector, JobPosting, SearchQuery
+from .base import JobConnector, JobPosting, SearchQuery, matches_keywords
 
 
 class GreenhouseConnector(JobConnector):
@@ -41,14 +41,12 @@ class GreenhouseConnector(JobConnector):
         url = f"https://boards-api.greenhouse.io/v1/boards/{board}/jobs"
         resp = await client.get(url)
         resp.raise_for_status()
-        keywords = [k.lower() for k in query.keywords]
 
         postings: list[JobPosting] = []
         for item in resp.json().get("jobs", []):
             title = item.get("title", "")
             location = (item.get("location", {}) or {}).get("name", "")
-            haystack = f"{title} {location}".lower()
-            if keywords and not any(k in haystack for k in keywords):
+            if not matches_keywords(f"{title} {location}", query.keywords):
                 continue
             remote = "remote" in location.lower()
             if query.remote_only and not remote:

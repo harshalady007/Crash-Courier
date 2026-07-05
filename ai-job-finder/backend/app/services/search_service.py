@@ -19,7 +19,7 @@ from ..connectors import JobPosting, SearchQuery, build_connectors
 from ..models import Job, JobMatch, Resume, SearchRun
 from .match_scorer import detect_fresher_friendly, extract_years_demand, score_match
 from .role_scorer import score_roles
-from .skill_extractor import extract_skills
+from .skill_extractor import extract_job_skills
 
 logger = logging.getLogger(__name__)
 
@@ -41,8 +41,9 @@ def build_search_keywords(resume: Resume, roles_override: list[str] | None) -> t
         for fit in top_roles:
             role_titles.extend(fit.titles[:2])
 
-    # Connector keywords: role titles + a few strong resume skills.
-    strong_skills = (resume.skills or [])[:5]
+    # Connector keywords: role titles + a few strong resume skills. Short skill
+    # names ("c", "r", "go") are excluded — they match nearly every posting.
+    strong_skills = [s for s in (resume.skills or []) if len(s) >= 3][:5]
     keywords = list(dict.fromkeys(role_titles + strong_skills))  # de-dup, keep order
     return keywords[:12], role_titles
 
@@ -110,7 +111,7 @@ def persist_and_score(
                 location=posting.location[:200],
                 remote=posting.remote,
                 description=posting.description,
-                required_skills=extract_skills(f"{posting.title} {posting.description}"),
+                required_skills=extract_job_skills(f"{posting.title} {posting.description}"),
                 experience_required=(
                     f"{extract_years_demand(posting.title, posting.description)}+ years"
                     if extract_years_demand(posting.title, posting.description) is not None

@@ -43,6 +43,20 @@ def extract_skills(text: str) -> list[str]:
     return found
 
 
+# One/two-letter language names false-positive constantly in prose ("c." in lists,
+# "R" initials, "go to"). Trust them on resumes (explicit skills sections) but not
+# on job descriptions unless the posting is clearly technical.
+RISKY_SHORT_SKILLS = {"c", "r", "go"}
+
+
+def extract_job_skills(text: str) -> list[str]:
+    """Skill extraction tuned for job postings: drop risky short skills unless
+    at least three other skills confirm a technical context."""
+    skills = extract_skills(text)
+    solid = [s for s in skills if s not in RISKY_SHORT_SKILLS]
+    return skills if len(solid) >= 3 else solid
+
+
 def skill_categories() -> dict[str, str]:
     return {entry["id"]: entry["category"] for entry in _load_taxonomy()}
 
